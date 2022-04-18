@@ -35,7 +35,7 @@ const material = new THREE.MeshStandardMaterial( {color: 0xFF6347});
 const torus = new THREE.Mesh(geometry, material);
 
 // add the torus to the scene
-scene.add(torus)
+//scene.add(torus)
 
 const pointLight = new THREE.PointLight(0xffffff)
 pointLight.position.set(5, 5, 5); 
@@ -47,9 +47,9 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight)
 
 // helps us with pointing out the light direction
-const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50); 
-scene.add(lightHelper, gridHelper)
+// const lightHelper = new THREE.PointLightHelper(pointLight)
+// const gridHelper = new THREE.GridHelper(200, 50); 
+// scene.add(lightHelper, gridHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -70,36 +70,15 @@ Array(200).fill().forEach(addStar)
 const spaceTexture = new THREE.TextureLoader().load('space.jpg'); 
 scene.background = spaceTexture; 
 
+// load custom object into the scene
+const loader = new GLTFLoader();
+loader.load( 'naanmodel.glb', function ( gltf ) {
+	scene.add( gltf.scene );
+}, undefined, function ( error ) {
+	console.error( error );
 
-// loading custom 3d model 
-// const loader = new GLTFLoader();
+} );
 
-// loader.load( 'testnaan.glb', function ( gltf ) {
-
-// 	scene.add( gltf.scene );
-
-// }, undefined, function ( error ) {
-
-// 	console.error( error );
-
-// } );
-
-// // avatar shape map onto 3d object
-// const nancyTexture = new THREE.TextureLoader().load('nancyzuo.png'); 
-
-// const nancy = new THREE.Mesh(
-//   // new THREE.BoxGeometry(3,3,3),
-//   new THREE.SphereGeometry(3, 32, 32),
-//   new THREE.MeshBasicMaterial({map: nancyTexture})
-// );
-
-// scene.add(nancy);
-
-// // moon
-// const moon = new THREE.Mesh(
-//   new THREE.SphereGeometry(3, 32, 32),
-//   new THREE.MeshStandardMaterial()
-// )
 
 // want to create this function so it renders itself each time, like a game loop 
 function animate() {
@@ -109,6 +88,11 @@ function animate() {
   torus.rotation.x += 0.01; 
   torus.rotation.y += 0.005; 
   torus.rotation.z += 0.01; 
+
+  // animate the shitty naan
+  // gltf.scene.rotation.x += 0.01;
+  // gltf.scene.rotation.y += 0.005; 
+  // gltf.scene.rotation.z += 0.01; 
 
   controls.update()
 
