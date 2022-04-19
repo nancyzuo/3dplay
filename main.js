@@ -1,6 +1,6 @@
 import './style.css'
 
-import * as THREE from 'three';
+import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 
 // import orbit controls to be able to control object with the mouse
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
@@ -102,4 +102,13 @@ function animate() {
 }
 
 animate()
+
+//change page title, need to add if click the naan 
+function changePageTitle() {
+  newPageTitle = 'naan';
+  document.querySelector('title').textContent
+          = newPageTitle;
+}
+
+
 
