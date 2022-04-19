@@ -11,7 +11,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 const scene = new THREE.Scene(); 
 
 // perspective camera that mimics what eyes would see, most popular one
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 // create renderer
 const renderer = new THREE.WebGLRenderer({
@@ -22,6 +22,8 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(30);
+camera.position.setY(30);
+
 
 renderer.render(scene, camera); 
 
@@ -85,9 +87,9 @@ function animate() {
   requestAnimationFrame(animate); 
   
   // animate the object by doing this
-  torus.rotation.x += 0.01; 
-  torus.rotation.y += 0.005; 
-  torus.rotation.z += 0.01; 
+  // torus.rotation.x += 0.01; 
+  // torus.rotation.y += 0.005; 
+  // torus.rotation.z += 0.01; 
 
   // animate the shitty naan
   // gltf.scene.rotation.x += 0.01;
